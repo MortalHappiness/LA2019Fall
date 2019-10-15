@@ -15,5 +15,15 @@ def p2_has_cycle(sets):
             5  0  0  1  0  0  0
         The size of the matrix is (6,6)
     '''
-    return False
+    matrix = np.array(sets)
+    n_row, n_col = matrix.shape
 
+    for _ in range(n_row):
+        matrix = np.dot(matrix, matrix)
+
+        # check the diagonal for cycle
+        for i in range(n_row):
+            if matrix[i][i] >= 1:
+                return True
+
+    return False
