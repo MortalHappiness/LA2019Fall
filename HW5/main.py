@@ -27,7 +27,7 @@ def run_train_test(N):
     test_X, test_Y = read_test_csv('data/test.csv', N)
     pred_test_Y = model.predict(test_X)
     test_loss = MSE(pred_test_Y, test_Y)
-    print(train_loss, test_loss)    
+    print(train_loss, test_loss)
     return train_loss, test_loss
 
 if __name__ == '__main__' :
