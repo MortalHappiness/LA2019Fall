@@ -11,19 +11,11 @@ def svd_compress(imArr, K=50):
     imArr_compressed = np.zeros(imArr.shape)
     # For each channel
     for ch in range(3):
-        # --------------------
-        # TODO: 
-        #     Compress the image array using SVD decomposition
-        # hint:
-        #     1. numpy.linalg.svd
-        #     2. numpy.diag
-        #     3. numpy.dot
-        #
-        # Your code here
-        # imArr_compressed = ??
-        # 
-        # --------------------
-        
+        # Compress the image array using SVD decomposition
+        u, s, vh = np.linalg.svd(imArr[:, :, ch])
+        sigma = np.diag(s[:K])
+        imArr_compressed[:, :, ch] = np.dot(np.dot(u[:, :K], sigma), vh[:K, :])
+
         # Make imArr_compressed range from 0 to 255
         imArr_compressed[:, :, ch] -= imArr_compressed[:, :, ch].min()
         imArr_compressed[:, :, ch] /= imArr_compressed[:, :, ch].max()
